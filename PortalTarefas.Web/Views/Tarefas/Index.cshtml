@@ -1,0 +1,31 @@
+@model IReadOnlyList<Tarefa>
+@{ ViewData["Title"] = "Minhas tarefas"; }
+<h1>Minhas tarefas</h1>
+<p>Organize os estudos, acompanhe os prazos e atualize o andamento das atividades.</p>
+<a class="button" asp-action="Create">Cadastrar tarefa</a>
+@await Component.InvokeAsync("TarefasVencidas")
+<section class="panel" aria-label="Lista de tarefas">
+    <h2>@Model.Count tarefa(s) cadastrada(s)</h2>
+    @if (Model.Count == 0)
+    {
+        <p class="empty">Nenhuma tarefa cadastrada. Comece adicionando sua primeira atividade.</p>
+    }
+    else
+    {
+        <div class="table-wrap"><table>
+            <thead><tr><th>Tarefa</th><th>Prioridade</th><th>Prazo</th><th>Situação</th><th>Ações</th></tr></thead>
+            <tbody>
+            @foreach (var tarefa in Model)
+            {
+                <tr>
+                    <td>@tarefa.Titulo</td><td>@tarefa.Prioridade</td>
+                    <td>@(tarefa.Prazo?.ToString("dd/MM/yyyy") ?? "Sem prazo")</td>
+                    <td><span class="badge">@(tarefa.Concluida ? "Concluída" : "Pendente")</span></td>
+                    <td><a asp-action="Details" asp-route-id="@tarefa.Id">Detalhes</a> ·
+                        <a asp-action="Edit" asp-route-id="@tarefa.Id">Editar</a></td>
+                </tr>
+            }
+            </tbody>
+        </table></div>
+    }
+</section>

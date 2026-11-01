@@ -1,0 +1,16 @@
+@model TarefaInputModel
+<div asp-validation-summary="All" role="alert"></div>
+<label asp-for="Titulo"></label>
+<input asp-for="Titulo" maxlength="100" aria-describedby="erro-titulo" />
+<span asp-validation-for="Titulo" id="erro-titulo"></span>
+<label asp-for="Descricao"></label>
+<textarea asp-for="Descricao" maxlength="500" aria-describedby="erro-descricao"></textarea>
+<span asp-validation-for="Descricao" id="erro-descricao"></span>
+<label asp-for="Prioridade"></label>
+<select asp-for="Prioridade" asp-items="Html.GetEnumSelectList<Prioridade>()" aria-describedby="erro-prioridade"></select>
+<span asp-validation-for="Prioridade" id="erro-prioridade"></span>
+<label asp-for="Prazo"></label>
+<input asp-for="Prazo" type="date" asp-format="{0:yyyy-MM-dd}" aria-describedby="ajuda-prazo erro-prazo" />
+<small id="ajuda-prazo">Obrigatório para prioridade alta. Prazos passados são aceitos para registrar pendências.</small>
+<span asp-validation-for="Prazo" id="erro-prazo"></span>
+<div class="check"><input asp-for="Concluida" /><label asp-for="Concluida"></label></div>

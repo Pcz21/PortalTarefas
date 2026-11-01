@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] | PortalTarefas</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+<header><div class="wrap"><strong>PortalTarefas</strong>
+    <nav aria-label="Navegação principal">
+        <a asp-controller="Tarefas" asp-action="Index">Minhas tarefas</a>
+        <a asp-controller="Tarefas" asp-action="Create">Nova tarefa</a>
+        <a href="/demo.html">Laboratório HTTP</a>
+    </nav>
+</div></header>
+<main class="wrap">
+    <p class="eyebrow">UNIP · DESENVOLVIMENTO WEB COM .NET · UNIDADE 2</p>
+    @if (TempData["Mensagem"] is string mensagem)
+    {
+        <div class="notice success" role="status">@mensagem</div>
+    }
+    @RenderBody()
+</main>
+<footer class="wrap">Projeto acadêmico · ASP.NET Core MVC · Persistência em SQL Server</footer>
+</body>
+</html>

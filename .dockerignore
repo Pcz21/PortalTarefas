@@ -1,0 +1,14 @@
+**/bin
+**/obj
+**/node_modules
+**/dist
+.git
+.vs
+qa
+evidencias
+relatorios
+Prints dos codigos
+**/*.pfx
+**/*.pem
+**/.env*
+**/secrets.json

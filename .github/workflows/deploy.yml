@@ -1,0 +1,71 @@
+name: PortalTarefas implantação manual
+on:
+  workflow_dispatch:
+    inputs:
+      ci_run_id:
+        description: ID de uma execução aprovada do workflow PortalTarefas CI
+        required: true
+      revision:
+        description: SHA completo de 40 caracteres aprovado no CI
+        required: true
+      ambiente:
+        type: choice
+        options: [staging, production]
+        default: staging
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: portaltarefas-deploy-${{ inputs.ambiente }}
+  cancel-in-progress: false
+jobs:
+  implantar:
+    # Exige host dedicado configurado pelo aluno. Nenhum runner foi cadastrado.
+    runs-on: [self-hosted, linux, portaltarefas]
+    environment: ${{ inputs.ambiente }}
+    steps:
+      - name: Validar origem do artefato
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ inputs.ci_run_id }}
+          REVISION: ${{ inputs.revision }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$RUN_ID" =~ ^[0-9]+$ ]]
+          [[ "$REVISION" =~ ^[a-f0-9]{40}$ ]]
+          gh api "repos/$REPO/actions/runs/$RUN_ID" > run.json
+          jq -e --arg sha "$REVISION" '.conclusion == "success" and .head_sha == $sha and .head_branch == "main" and .path == ".github/workflows/ci.yml" and (.event == "push" or .event == "workflow_dispatch")' run.json
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.revision }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: portaltarefas-${{ inputs.revision }}
+          run-id: ${{ inputs.ci_run_id }}
+          github-token: ${{ github.token }}
+          path: qa
+      - name: Conferir e carregar imagem aprovada
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum -c qa/portaltarefas-image.tar.sha256
+          docker load -i qa/portaltarefas-image.tar
+      - name: Implantar com retorno automático se smoke test falhar
+        shell: pwsh
+        env:
+          PORTAL_ENV_FILE: ${{ vars.PORTAL_ENV_FILE }}
+          PORTAL_CERT_DIRECTORY: ${{ vars.PORTAL_CERT_DIRECTORY }}
+          PORTAL_NETWORK: ${{ vars.PORTAL_NETWORK }}
+          PORTAL_KEY_VOLUME: ${{ vars.PORTAL_KEY_VOLUME }}
+          PORTAL_HTTP_PORT: ${{ vars.PORTAL_HTTP_PORT }}
+          PORTAL_HTTPS_PORT: ${{ vars.PORTAL_HTTPS_PORT }}
+          TARGET_ENV: ${{ inputs.ambiente }}
+        run: |
+          ./scripts/deploy-container.ps1 -ImageRef (Get-Content qa/image-id.txt -Raw).Trim() -ContainerName "portaltarefas-$env:TARGET_ENV" -EnvFile $env:PORTAL_ENV_FILE -CertificateDirectory $env:PORTAL_CERT_DIRECTORY -Network $env:PORTAL_NETWORK -KeyVolume $env:PORTAL_KEY_VOLUME -HttpPort ([int]$env:PORTAL_HTTP_PORT) -HttpsPort ([int]$env:PORTAL_HTTPS_PORT)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: registro-deploy-${{ github.run_id }}
+          path: qa/deploy

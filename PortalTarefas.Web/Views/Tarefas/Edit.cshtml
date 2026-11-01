@@ -1,0 +1,9 @@
+@model TarefaInputModel
+@{ ViewData["Title"] = "Editar tarefa"; }
+<h1>Editar tarefa #@ViewData["Id"]</h1>
+<p>Atualize as informações e salve as alterações.</p>
+<form asp-action="Edit" asp-route-id="@ViewData["Id"]" method="post" class="panel" novalidate>
+    <input asp-for="Versao" type="hidden" />
+    <partial name="_FormularioTarefa" model="Model" />
+    <div class="actions"><button type="submit">Salvar alterações</button><a asp-action="Index">Cancelar</a></div>
+</form>

@@ -1,0 +1,8 @@
+@model Tarefa
+<article class="panel">
+    <h2>@Model.Titulo</h2>
+    <p>@(string.IsNullOrWhiteSpace(Model.Descricao) ? "Sem descrição." : Model.Descricao)</p>
+    <p><strong>Prioridade:</strong> @Model.Prioridade · <strong>Prazo:</strong> @(Model.Prazo?.ToString("dd/MM/yyyy") ?? "Sem prazo")</p>
+    <span class="badge">@(Model.Concluida ? "Concluída" : "Pendente")</span>
+    <p><a asp-controller="Tarefas" asp-action="Edit" asp-route-id="@Model.Id">Editar tarefa #@Model.Id</a></p>
+</article>

@@ -1,0 +1,43 @@
+name: PortalTarefas CI
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.401
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.1
+          cache: npm
+          cache-dependency-path: PortalTarefas.Frontend/package-lock.json
+      - name: Restore build testes e publicação
+        shell: pwsh
+        run: ./scripts/ci.ps1
+      - name: Inventário de dependências
+        run: dotnet list PortalTarefas.Web package --include-transitive --format json > qa/dependencias.json
+      - name: Construir imagem rastreável
+        run: docker build --label org.opencontainers.image.revision=${{ github.sha }} -t portaltarefas:${{ github.sha }} .
+      - name: Preservar imagem e checksum sem publicar em registry
+        run: |
+          docker save portaltarefas:${{ github.sha }} -o qa/portaltarefas-image.tar
+          sha256sum qa/portaltarefas-image.tar > qa/portaltarefas-image.tar.sha256
+          docker image inspect portaltarefas:${{ github.sha }} --format '{{.Id}}' > qa/image-id.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portaltarefas-${{ github.sha }}
+          path: |
+            qa/artefatos-ci
+            qa/dependencias.json
+            qa/testes-ci
+            qa/portaltarefas-image.tar
+            qa/portaltarefas-image.tar.sha256
+            qa/image-id.txt

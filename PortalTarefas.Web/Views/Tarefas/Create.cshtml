@@ -1,0 +1,8 @@
+@model TarefaInputModel
+@{ ViewData["Title"] = "Nova tarefa"; }
+<h1>Nova tarefa</h1>
+<p>Registre uma atividade e defina sua prioridade.</p>
+<form asp-action="Create" method="post" class="panel" novalidate>
+    <partial name="_FormularioTarefa" model="Model" />
+    <div class="actions"><button type="submit">Cadastrar</button><a asp-action="Index">Cancelar</a></div>
+</form>

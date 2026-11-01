@@ -1,0 +1,5 @@
+@model Tarefa
+@{ ViewData["Title"] = "Detalhes da tarefa"; }
+<h1>Detalhes da tarefa #@Model.Id</h1>
+<partial name="_ResumoTarefa" model="Model" />
+<a asp-action="Index">Voltar para a lista</a>

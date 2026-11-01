@@ -1,0 +1,15 @@
+@model IReadOnlyList<Tarefa>
+<section aria-label="Tarefas vencidas">
+    @if (Model.Count > 0)
+    {
+        <h2>Tarefas vencidas · @Model.Count</h2>
+        @foreach (var tarefa in Model)
+        {
+            <partial name="_ResumoTarefa" model="tarefa" />
+        }
+    }
+    else
+    {
+        <p class="notice">Nenhuma tarefa pendente com prazo vencido.</p>
+    }
+</section>

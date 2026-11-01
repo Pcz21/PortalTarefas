@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+.vs/
+*.user
+*.pfx
+*.p12
+.env*
+**/secrets.json
+qa/
+node_modules/
+**/dist/
+PortalTarefas.Web/wwwroot/spa/
+**/*.tsbuildinfo

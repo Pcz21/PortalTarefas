@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PortalTarefas | Laboratório HTTP</title><link rel="stylesheet" href="/css/site.css"></head>
+<body><header><div class="wrap"><strong>PortalTarefas</strong><nav><a href="/demo.html">Laboratório HTTP</a><a href="/Tarefas">Tarefas MVC</a><a href="/status">Status</a></nav></div></header>
+<main class="wrap"><p class="eyebrow">UNIP · DESENVOLVIMENTO WEB COM .NET · UNIDADE 1</p>
+<h1>Laboratório HTTP</h1><p>Execute uma requisição e examine o status, os cabeçalhos e o corpo retornados pelo servidor.</p>
+<div class="notice">Dados em memória: os cadastros são apagados quando o servidor é reiniciado.</div>
+<section class="panel"><label for="cenario">Requisito em demonstração</label><select id="cenario">
+<option value="status">GET /status · rota original e middleware</option>
+<option value="binding">GET /api/saudacao · query e header</option>
+<option value="criar">POST /api/tarefas · JSON e 201 Created</option>
+<option value="listar">GET /api/tarefas · listagem</option>
+<option value="filtrar">GET /api/tarefas?concluida=false · filtro</option>
+<option value="invalido">POST /api/tarefas · validação 400</option>
+<option value="ausente">GET /api/tarefas/999999 · 404</option>
+<option value="json">POST /api/tarefas · JSON inválido 400</option>
+<option value="mvc">POST /mvc-api/tarefas · controller equivalente</option>
+<option value="erro">GET /diagnostico/erro · exceção tratada 500</option>
+</select><button id="executar">Executar requisição</button></section>
+<section class="panel"><h2>Resposta real do servidor</h2><p id="requisicao">Selecione um cenário para começar.</p><p id="resultado" role="status"></p><pre id="resposta"></pre></section>
+<p>HTTP redireciona para HTTPS. CORS permite as origens locais configuradas na política Laboratorio.</p>
+</main><footer class="wrap">Projeto acadêmico · C# · ASP.NET Core · .NET 10</footer>
+<script>
+const cenarios = {
+ status: ['/status'], binding: ['/api/saudacao?nome=Aluno', {headers:{'X-Aluno':'Demonstracao UNIP'}}],
+ criar: ['/api/tarefas', {method:'POST',body:JSON.stringify({titulo:'Apresentar PortalTarefas',descricao:'Demonstração da Unidade 1',concluida:false})}],
+ listar: ['/api/tarefas'], filtrar: ['/api/tarefas?concluida=false'],
+ invalido: ['/api/tarefas',{method:'POST',body:JSON.stringify({titulo:' '})}],
+ ausente: ['/api/tarefas/999999'], json: ['/api/tarefas',{method:'POST',body:'{'}],
+ mvc: ['/mvc-api/tarefas',{method:'POST',body:JSON.stringify({titulo:'Comparar controller e Minimal API'})}],
+ erro: ['/diagnostico/erro']
+};
+document.querySelector('#executar').addEventListener('click', async () => {
+ const [url, opcoes = {}] = cenarios[document.querySelector('#cenario').value];
+ const options = {...opcoes,headers:{...(opcoes.body?{'Content-Type':'application/json'}:{}),...opcoes.headers}};
+ document.querySelector('#requisicao').textContent = `${options.method || 'GET'} ${location.origin}${url}`;
+ const result = document.querySelector('#resultado'); result.textContent='Aguardando resposta...';
+ try {
+ if(options.method==='POST'){const csrf=await(await fetch('/auth/csrf')).json();options.headers['X-CSRF-TOKEN']=csrf.token;}
+ const response = await fetch(url,options), body = await response.text();
+ result.textContent = `HTTP ${response.status} ${response.statusText}`;
+ let formatted; try {formatted=JSON.stringify(JSON.parse(body),null,2);} catch {formatted=body;}
+ document.querySelector('#resposta').textContent = `Enviado: ${options.body || '(sem corpo)'}\n\n` +
+ [...response.headers].map(([k,v])=>`${k}: ${v}`).join('\n')+'\n\n'+formatted;
+ } catch (error) {result.textContent='Falha de conexão: '+error.message;}
+});
+</script></body></html>
