@@ -1,3 +1,5 @@
+> Estado atualizado após autorização do titular: repositório público em https://github.com/Pcz21/PortalTarefas . O CI já foi executado com sucesso no GitHub; resultados em https://github.com/Pcz21/PortalTarefas/actions/workflows/ci.yml . A implantação externa e a execução do workflow de deploy continuam pendentes. As seções abaixo preservam o histórico de preparação e os procedimentos de operação.
+
 # Operação e implantação
 
 A revisão ao final deste documento registra Docker, staging e rollback locais comprovados. CI/CD remoto aguarda autorização.
