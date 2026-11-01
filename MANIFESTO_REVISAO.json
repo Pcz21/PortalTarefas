@@ -49,7 +49,7 @@
   },
   {
     "arquivo": "PortalTarefas.Frontend/src/api/generated.ts",
-    "sha256": "babdb812744dc0735a253c3fcc48abc83ebc22980056b0c4c3231064fd71cffb"
+    "sha256": "89b2c4ce1e17b8008dc5f76eb3538c943b076652fe78e73d5de5badfc1d6cfe8"
   },
   {
     "arquivo": "PortalTarefas.Frontend/src/auth.tsx",
@@ -61,7 +61,7 @@
   },
   {
     "arquivo": "PortalTarefas.Frontend/src/site.css",
-    "sha256": "0ae800e561b01c9139332d4ecee010135a2e8011d6aa349dc40ec692aa5d1582"
+    "sha256": "af810eb4ee3924678cfcc233d61b37e0d1e62e3e46d768a284a5b65c0edf9f3e"
   },
   {
     "arquivo": "PortalTarefas.Frontend/src/vite-env.d.ts",
@@ -81,7 +81,7 @@
   },
   {
     "arquivo": "PortalTarefas.Tests/PortalTarefas.Tests.csproj",
-    "sha256": "01bb3c0d21ec2b0563ae219845006cd1ace9bfcea12abb63be93ed6d4c6140ee"
+    "sha256": "e63651ac8c3d2109468f55f7934f78a7e3b4036c0bc8a9b02e36626be0990650"
   },
   {
     "arquivo": "PortalTarefas.Tests/RegrasTest.cs",
@@ -89,7 +89,7 @@
   },
   {
     "arquivo": "PortalTarefas.Tests/packages.lock.json",
-    "sha256": "f8a614afee21cf98ed329f781720b617af5965ae98e91a4415320e424ecbb1aa"
+    "sha256": "dfe6b2e6e0048e3cd6241e2402cc7566271e33220e451b4d8a2d59102c181ed7"
   },
   {
     "arquivo": "PortalTarefas.Web/Controllers/ApiV1Controller.cs",
@@ -133,23 +133,23 @@
   },
   {
     "arquivo": "PortalTarefas.Web/Migrations/20261101223233_Inicial.Designer.cs",
-    "sha256": "8e585b5308cda52fc635bd239412d2e239c56ebcf364e5972b2c442d35435739"
+    "sha256": "651d88e837289799d61b373acbda00fa98ae1c241fce7add1ab268e2f586efdf"
   },
   {
     "arquivo": "PortalTarefas.Web/Migrations/20261101223233_Inicial.cs",
-    "sha256": "bcfac30003fe332f15151be781215c8fac750208a88f3a4e6bcbabead58ebef3"
+    "sha256": "abce25ac9eb32fc1aae7cf74c65f08e49287bc60340000ac5aa55633e0ed0b5a"
   },
   {
     "arquivo": "PortalTarefas.Web/Migrations/20261101224431_Identity.Designer.cs",
-    "sha256": "876df45b49089481545a943f9f9e7520d48de64b5fe5118da228f8c25059fa1d"
+    "sha256": "a242d2cb7cc32d74b9996e2fe015e1d36a8bf2bdf93a8a098f959c7fa52505f7"
   },
   {
     "arquivo": "PortalTarefas.Web/Migrations/20261101224431_Identity.cs",
-    "sha256": "77e54afd29723b4a3fd90355de9e687df59d5767602838e9ce77d02b7b5a2c9b"
+    "sha256": "70b3eb18fef5b467635ef382c2db358de0c93f712b82441528447930b6ba7a66"
   },
   {
     "arquivo": "PortalTarefas.Web/Migrations/PortalTarefasDbContextModelSnapshot.cs",
-    "sha256": "c4916dbab86db71dcbe32e2e8e55f733dedc53b12aed717a4d34d53a76180e27"
+    "sha256": "765f8f5533e7be22fe2eb4930dbfecc38941a4c0ff9b38fa6c5b06e622be3b04"
   },
   {
     "arquivo": "PortalTarefas.Web/Models/ApiDtos.cs",
@@ -169,15 +169,15 @@
   },
   {
     "arquivo": "PortalTarefas.Web/PortalTarefas.Web.csproj",
-    "sha256": "166b2aa90375c0b3e9442dbe6d7e448ef1f6f52cb4c49896cbc81fc530faab9b"
+    "sha256": "56190c30369f0415b58a4f8790f25bd3e57a180c058bd0fbac013a5c7b8833af"
   },
   {
     "arquivo": "PortalTarefas.Web/Program.cs",
-    "sha256": "d679db3fb3fd2c03078ce02f5d7acb9ee1a5f8b0e4a34138069465444c74c3a5"
+    "sha256": "4c76c9b17f7ee50504e479ba37edde56d02bbe03fbbd82be54231ada5cfddae7"
   },
   {
     "arquivo": "PortalTarefas.Web/Properties/launchSettings.json",
-    "sha256": "df7ed3ec0a64ef26746a9ecbfecc9b9821c7fcb03d09036769117a36b3d8324a"
+    "sha256": "8b280398b221b97449a79379e79cd7cd0d16f566b3a4332e697df6125d5a9a47"
   },
   {
     "arquivo": "PortalTarefas.Web/Security/IdentitySeed.cs",
@@ -241,7 +241,7 @@
   },
   {
     "arquivo": "PortalTarefas.Web/appsettings.Development.json",
-    "sha256": "23eb4b676c8a5c5a211456cac518c9ac339c477242e7f93eea992b29f3aa5c02"
+    "sha256": "798b19ec12e77bfcc4aadca28d51b8b0ab2b6caedafe331a4e9bc44e1c0d3cc9"
   },
   {
     "arquivo": "PortalTarefas.Web/appsettings.Production.json",
@@ -249,11 +249,11 @@
   },
   {
     "arquivo": "PortalTarefas.Web/appsettings.json",
-    "sha256": "200332b434757a0054a3d356c91cde01f2c48712be8aa2bcb0f3e973619f06e3"
+    "sha256": "2d8bb40059df22089b94c025be8baad5a869b72d4d755d199c872f03bfe6f225"
   },
   {
     "arquivo": "PortalTarefas.Web/packages.lock.json",
-    "sha256": "0e43044078c670b70dc44bf2dfcabe1841a66c4ac6a9e428e77a52e5c2bef41c"
+    "sha256": "ed5007bd9cb64186a9c10c0abfac86f52929f88c48f515885a4b776448761e8b"
   },
   {
     "arquivo": "PortalTarefas.Web/wwwroot/css/site.css",
@@ -265,7 +265,7 @@
   },
   {
     "arquivo": "PortalTarefas.slnx",
-    "sha256": "5e7f6b27089bba39ade2ce501d79d920bdcdc0f259eb63f322a2bd7279c34ab6"
+    "sha256": "4e63f30b09cf098461842cfcf2040e206efcb513312f882deaf655321c8dc42f"
   },
   {
     "arquivo": "README.md",
@@ -281,11 +281,11 @@
   },
   {
     "arquivo": "documentacao/OPERACAO_E_DEPLOY.md",
-    "sha256": "460bd3b7701e4ae6afbc678a3f1d475b631206ac95e11f8acdd75ec2367ce6f5"
+    "sha256": "8a5a60209e0c93d1cb860d708fcbf2295d1bbe76b04fa8c5c0f19be0ab0de591"
   },
   {
     "arquivo": "dotnet-tools.json",
-    "sha256": "1cacdc9ed4f968eb513059861a17cbda01831108562afc74e6b72de54a64eaf9"
+    "sha256": "9d58fa56a19ab15b04a65a06ada779c601a794998eb7419d3c2de1f250576287"
   },
   {
     "arquivo": "global.json",
@@ -301,7 +301,7 @@
   },
   {
     "arquivo": "scripts/deploy-container.ps1",
-    "sha256": "c40508f96932c86826d5726dfbcf5f301c38e9c2632ae0eb9ebe94333b016ed5"
+    "sha256": "8fa427244bd095ef4c12eaf1a3bbcac6774f45919d62b42393553f50131370f9"
   },
   {
     "arquivo": "scripts/publicar-frontend.ps1",
